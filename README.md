@@ -2,7 +2,7 @@ Peter Jakobs' Vim Configuration.
 ==
 My vim configuration (copied from https://github.com/derekwyatt/vim-config)
 
-To install it, do the following:
+To install, do the following:
 
 - Wipe out your `~/.vimrc` file and `~/.vim` directory (back up if you wish)
 - `git clone https://github.com/pjakobs/vim-config.git ~/.vim`
