@@ -1,0 +1,33 @@
+#!/bin/bash
+#
+# NAME
+#      get
+#
+# SYNOPSIS
+#      get [plugin-name ...]
+#
+# DESCRIPTION
+#      The get script clones from github one ore more plugins as specified in
+#      from_github.md.
+#
+#      If no plugin-name is provided, then all plugins specified in from_github.md 
+#      will be cloned.
+#
+# HISTORY
+#      This script is copied from https://github.com/derekwyatt/vim-config/tree/master/bundle
+
+pluginlist=
+if [[ $# == 0 ]]; then
+  pluginlist="$(grep '\*\*[^\*]*\*\*' from_github.md | sed 's/^....\([^:]*\)..:.*$/\1/')"
+else
+  pluginlist="$@"
+fi
+
+for plugin in $pluginlist
+do
+  clone="$(grep $plugin from_github.md | sed 's/.*`\(.*\)`.*$/\1/')"
+  d=$(echo $clone | cut -f -d' ')
+  if [[ ! -d "$d" ]]; then
+    eval $clone
+  fi
+done
